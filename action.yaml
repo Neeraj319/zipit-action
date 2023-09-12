@@ -16,9 +16,5 @@ inputs:
     description: "http basic auth password"
 
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - --zip-file-name=${{ inputs.zip-file-name }}
-    - --username=${{ inputs.username }}
-    - --password=${{ inputs.password }}
+  using: 'node20'
+  main: "main.js"
