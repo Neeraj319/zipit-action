@@ -1,0 +1,24 @@
+name: "zip-push"
+author: "itskop520@gmail.com"
+description: "Zip source code and push it to a remote server"
+branding:
+  icon: "info"
+  color: "green"
+inputs:
+  zip-file-name:
+    required: true
+    description: "name of zip file to be pushed"
+  username:
+    required: true
+    description: "http basic auth username"
+  password:
+    required: true
+    description: "http basic auth password"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - --zip-file-name=${{ inputs.zip-file-name }}
+    - --usernmae=${{ inputs.username }}
+    - --password=${{ inputs.password }}
