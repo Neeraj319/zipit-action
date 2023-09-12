@@ -29,23 +29,26 @@ async function main() {
 
 		const formData = new FormData();
 		formData.append(args.uploadFileName, fs.createReadStream(args.zipFileName));
+		try {
+			const response = await fetch(args.url, {
+				method: 'POST',
+				headers: {
+					...formData.getHeaders(),
+					Authorization: `Basic ${Buffer.from(`${args.username}:${args.password}`).toString('base64')}`,
+				},
+				body: formData,
+				timeout: 60000,
+			});
 
-		const response = await axios.post(args.url, formData, {
-			auth: {
-				username: args.username,
-				password: args.password,
-			},
-			timeout: 60000,
-			headers: {
-				...formData.getHeaders(),
-			},
-		});
-
-		if (!response.data.ok) {
-			console.error(`Failed with status code ${response.status}`);
-			console.error(response.data);
-		} else {
-			console.log('Done');
+			if (!response.ok) {
+				console.error(`Failed with status code ${response.status}`);
+				const errorData = await response.text();
+				console.error(errorData);
+			} else {
+				console.log('Done');
+			}
+		} catch (error) {
+			console.error('Error:', error.message);
 		}
 	} catch (error) {
 		if (error.code === 'ETIMEDOUT') {
