@@ -2,40 +2,12 @@ const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
+const inputs = require('./inputs');
 
 const githubWorkspace = process.env.GITHUB_WORKSPACE;
 
-const args = require('yargs')
-	.option('zip-file-name', {
-		alias: 'z',
-		describe: 'Name of the zip file',
-		demandOption: true,
-		type: 'string',
-	})
-	.option('url', {
-		alias: 'u',
-		describe: 'URL to upload the file',
-		demandOption: true,
-		type: 'string',
-	})
-	.option('username', {
-		alias: 'n',
-		describe: 'Username for HTTP Basic Auth',
-		demandOption: true,
-		type: 'string',
-	})
-	.option('password', {
-		alias: 'p',
-		describe: 'Password for HTTP Basic Auth',
-		demandOption: true,
-		type: 'string',
-	})
-	.option('upload-file-name', {
-		alias: 'f',
-		describe: 'Name of the file to upload',
-		demandOption: true,
-		type: 'string',
-	}).argv;
+
+const args = inputs;
 
 function runCommand(command) {
 	return new Promise((resolve, reject) => {
