@@ -20,5 +20,5 @@ runs:
   image: "Dockerfile"
   args:
     - --zip-file-name=${{ inputs.zip-file-name }}
-    - --usernmae=${{ inputs.username }}
+    - --username=${{ inputs.username }}
     - --password=${{ inputs.password }}
