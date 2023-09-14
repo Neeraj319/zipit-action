@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser()
 
 logging.basicConfig(level=logging.NOTSET)
 
+import os
 
 parser.add_argument("--zip-file-name", dest="zip_file_name", type=str, required=True)
 parser.add_argument("--url", dest="url", type=str, required=True)
@@ -40,8 +41,6 @@ def main():
             line = process.stdout.readline()
             if not line:
                 break
-            logging.info(line.decode("utf-8").strip())
-        logging.info("Done zipping the file")
 
     except CalledProcessError as exp:
         stdout = (exp.stdout.decode("utf-8").strip()) + "\n"
@@ -56,7 +55,7 @@ def main():
         return
 
     try:
-        files = {args.upload_file_name: open("args.zip_file_name", "rb")}
+        files = {args.upload_file_name: open(args.zip_file_name, "rb")}
         response = requests.post(auth=auth, url=args.url, timeout=60, files=files)
         if not response.ok:
             logging.error(f"failed with status code {response.status_code}")

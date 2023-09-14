@@ -12,7 +12,7 @@ jobs:
         uses: ./
         with:
           zip-file-name: "test.zip"
-          username: "root"
-          password: "123"
-          url: "https://static.static.sandbox.com.np"
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          url: "https://static.sandbox.com.np/upload"
           upload-file-name: "file"
