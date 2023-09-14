@@ -1,4 +1,6 @@
-# zipit-action
+# zipit
+
+Github action that zips your source code and uploads it to remote server via HTTP.
 
 ## Example Usage
 ```
