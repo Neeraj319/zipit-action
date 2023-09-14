@@ -17,9 +17,9 @@ inputs:
   url:
     required: true
     description: "url endpoint to upload file"
-  upload-file-name:
+  upload-file-filed-name:
     required: true
-    description: "file upload field name"
+    description: "form field name when upload file"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -28,4 +28,4 @@ runs:
     - --username=${{ inputs.username }}
     - --password=${{ inputs.password }}
     - --url=${{ inputs.url }}
-    - --upload-file-name=${{ inputs.upload-file-name }}
+    - --upload-file-filed-name=${{ inputs.upload-file-filed-name }}

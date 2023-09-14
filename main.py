@@ -21,7 +21,7 @@ parser.add_argument("--url", dest="url", type=str, required=True)
 parser.add_argument("--username", dest="username", type=str, required=True)
 parser.add_argument("--password", dest="password", type=str, required=True)
 parser.add_argument(
-    "--upload-file-name", dest="upload_file_name", type=str, required=True
+    "--upload-file-filed-name", dest="upload_file_filed_name", type=str, required=True
 )
 
 
@@ -55,7 +55,7 @@ def main():
         return
 
     try:
-        files = {args.upload_file_name: open(args.zip_file_name, "rb")}
+        files = {args.upload_file_filed_name: open(args.zip_file_name, "rb")}
         response = requests.post(auth=auth, url=args.url, timeout=60, files=files)
         if not response.ok:
             logging.error(f"failed with status code {response.status_code}")
