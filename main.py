@@ -31,7 +31,7 @@ auth = HTTPBasicAuth(username=args.username, password=args.password)
 def main():
     try:
         process = subprocess.Popen(
-            f"zip {args.zip_file_name} -r /source/",
+            f"zip {args.zip_file_name} -r /source",
             stdout=PIPE,
             stderr=STDOUT,
             shell=True,
@@ -41,6 +41,7 @@ def main():
             if not line:
                 break
             logging.info(line.decode("utf-8").strip())
+        logging.info("Done zipping the file")
 
     except CalledProcessError as exp:
         stdout = (exp.stdout.decode("utf-8").strip()) + "\n"
