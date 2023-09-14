@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run zipit action
-        uses: Neeraj319/zipit-action@v1.1.3 # use the latest tag
+        uses: Neeraj319/zipit-action@main # use the latest tag
         with:
           zip-file-name: "test.zip"
           username: ${{ secrets.SERVER_USERNAME }}
