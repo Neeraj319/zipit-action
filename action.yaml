@@ -14,7 +14,12 @@ inputs:
   password:
     required: true
     description: "http basic auth password"
-
+  url:
+    required: true
+    description: "url endpoint to upload file"
+  upload_file_name:
+    required: true
+    description: "file upload field name"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -22,3 +27,5 @@ runs:
     - --zip-file-name=${{ inputs.zip-file-name }}
     - --username=${{ inputs.username }}
     - --password=${{ inputs.password }}
+    - --url=${{ inputs.url }}
+    - --upload-file-name=${{ inputs.upload_file_name }}

@@ -1,0 +1,18 @@
+name: Test Self action
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test zip it action
+        uses: ./
+        with:
+          zip-file-name: "test.zip"
+          username: "root"
+          password: "123"
+          url: "https://static.static.sandbox.com.np"
+          upload-file-name: "file"

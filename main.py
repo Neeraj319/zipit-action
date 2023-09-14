@@ -31,7 +31,7 @@ auth = HTTPBasicAuth(username=args.username, password=args.password)
 def main():
     try:
         process = subprocess.Popen(
-            f"zip {args.zip_file_name} -r /app/source/",
+            f"zip {args.zip_file_name} -r /source/",
             stdout=PIPE,
             stderr=STDOUT,
             shell=True,
@@ -55,7 +55,7 @@ def main():
         return
 
     try:
-        files = {args.upload_file_name: open(args.zip_file_name, "rb")}
+        files = {args.upload_file_name: open("args.zip_file_name", "rb")}
         response = requests.post(auth=auth, url=args.url, timeout=60, files=files)
         if not response.ok:
             logging.error(f"failed with status code {response.status_code}")
