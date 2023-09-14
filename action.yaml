@@ -17,7 +17,7 @@ inputs:
   url:
     required: true
     description: "url endpoint to upload file"
-  upload_file_name:
+  upload-file-name:
     required: true
     description: "file upload field name"
 runs:
@@ -28,4 +28,4 @@ runs:
     - --username=${{ inputs.username }}
     - --password=${{ inputs.password }}
     - --url=${{ inputs.url }}
-    - --upload-file-name=${{ inputs.upload_file_name }}
+    - --upload-file-name=${{ inputs.upload-file-name }}
