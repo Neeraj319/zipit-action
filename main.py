@@ -64,7 +64,7 @@ def main():
         logging.info("Done")
     except Timeout as e:
         logging.info(f"Request timed out {e}")
-        sys.exit(0)
+        sys.exit(1)
     except Exception as e:
         logging.error("Unhandled request exception")
         logging.error(e)
