@@ -32,7 +32,7 @@ auth = HTTPBasicAuth(username=args.username, password=args.password)
 def main():
     try:
         process = subprocess.Popen(
-            f"zip {args.zip_file_name} -r /source",
+            f"zip {args.zip_file_name} -r /github/workspace/",
             stdout=PIPE,
             stderr=STDOUT,
             shell=True,
