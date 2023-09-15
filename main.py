@@ -75,6 +75,7 @@ def main():
         if not response.ok:
             logging.error(f"failed with status code {response.status_code}")
             logging.error(f"{response.text}")
+            sys.exit(1)
         logging.info("Done")
     except Timeout as e:
         logging.info(f"Request timed out {e}")
