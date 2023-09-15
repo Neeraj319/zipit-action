@@ -20,6 +20,10 @@ inputs:
   upload-file-filed-name:
     required: true
     description: "form field name when upload file"
+  query-params:
+    required: false
+    description: "query params to be sent"
+
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -29,3 +33,4 @@ runs:
     - --password=${{ inputs.password }}
     - --url=${{ inputs.url }}
     - --upload-file-filed-name=${{ inputs.upload-file-filed-name }}
+    - --query-params=${{ inputs.query-params }}

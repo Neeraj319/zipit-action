@@ -25,6 +25,19 @@ parser.add_argument(
 )
 
 
+class KeyValue(argparse.Action):
+    def __call__(self, parser, namespace, values, option_string=None):
+        setattr(namespace, self.dest, dict())
+
+        for value in values:
+            key, value = value.split("=")
+            getattr(namespace, self.dest)[key] = value
+
+
+parser.add_argument(
+    "--query-params", dest="query_params", nargs="*", action=KeyValue, required=False
+)
+
 args = parser.parse_args()
 auth = HTTPBasicAuth(username=args.username, password=args.password)
 
@@ -56,7 +69,9 @@ def main():
 
     try:
         files = {args.upload_file_filed_name: open(args.zip_file_name, "rb")}
-        response = requests.post(auth=auth, url=args.url, timeout=300, files=files)
+        response = requests.post(
+            auth=auth, url=args.url, timeout=300, files=files, params=args.query_params
+        )
         if not response.ok:
             logging.error(f"failed with status code {response.status_code}")
             logging.error(f"{response.text}")
@@ -68,5 +83,6 @@ def main():
         logging.error("Unhandled request exception")
         logging.error(e)
         sys.exit(1)
+
 
 main()

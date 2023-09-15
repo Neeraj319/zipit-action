@@ -16,3 +16,4 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           url: "https://static.sandbox.com.np/upload"
           upload-file-filed-name: "file"
+          query-params: "folder_name=test"
