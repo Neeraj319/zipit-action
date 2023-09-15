@@ -22,6 +22,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           url: ${{ secrets.UPLOAD_ENDPOINT }}
           upload-file-filed-name: "file"
+          query-params: "folder_name=test"
 ```
 
 
@@ -43,4 +44,7 @@ inputs:
   upload-file-filed-name:
     required: true
     description: "form field name when upload file"
+  query-params:
+    required: false
+    description: "query params to be sent"
 ```
